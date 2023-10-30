@@ -43,7 +43,6 @@ MenuItems.style.maxHeight = "0px";
 
 function menutoggle() {
   if (MenuItems.style.maxHeight == "0px") {
-    MenuItems.style.maxHeight = "430px";
   } else {
     MenuItems.style.maxHeight = "0px";
   }
@@ -784,27 +783,35 @@ function getInfo() {
   var user_name = document.getElementById("user_name").value;
   var password = document.getElementById("password").value;
   var flag = 0;
-
+  if (user_name == "admin" && password == "admin") {
+    window.location.href = "../html/adminPage.html";
+    flag = 1;
+  }
   for (var i = 0; i < stored_accounts.length; i++) {
     if (
       user_name == stored_accounts[i].name &&
       password == stored_accounts[i].password
     ) {
-      window.location.href = "home.html";
-      flag = 1;
-      stored_accounts[i].state = 1;
+      if (stored_accounts[i].isBlocked == 1) {
+        alert("Account is blocked");
+        flag = 1;
+      } else {
+        window.location.href = "../html/home.html";
+        flag = 1;
+        stored_accounts[i].state = 1;
 
-      localStorage.setItem("user_info", JSON.stringify(stored_accounts));
-      document.getElementById("acc").innerHTML =
-        '<a id="userName">' + user_name + "</a>";
+        localStorage.setItem("user_info", JSON.stringify(stored_accounts));
+        document.getElementById("acc").innerHTML =
+          '<a id="userName">' + user_name + "</a>";
 
-      if (checkAdmin(user_name)) {
-        document.getElementById("admin").style.display = "inline-block";
-        document.getElementById("logOut").style.display = "inline-block";
-        document.getElementById("log_out").innerHTML =
-          '<i class="fas fa-sign-out-alt"></i>';
-        document.getElementById("user_name").value = null;
-        document.getElementById("password").value = null;
+        if (checkAdmin(user_name)) {
+          document.getElementById("admin").style.display = "inline-block";
+          document.getElementById("logOut").style.display = "inline-block";
+          document.getElementById("log_out").innerHTML =
+            '<i class="fas fa-sign-out-alt"></i>';
+          document.getElementById("user_name").value = null;
+          document.getElementById("password").value = null;
+        }
       }
     }
   }
@@ -1054,7 +1061,7 @@ function home() {
   document.getElementById("propagation").style.display = "block";
   document.getElementById("bs&na").style.display = "block";
   document.getElementById("page-num").style.display = "none";
-  document.getElementById("home").style.height = "760px";
+  document.getElementById("home").style.height = "690px";
   document.getElementById("all_products").style.display = "none";
   for (var i = 1; i <= 7; i++)
     document.getElementById(i.toString()).style.background = "#FF8C00";
@@ -1595,8 +1602,6 @@ function gotoAdmin() {
 }
 
 function checkAdmin(name) {
-  //console.log("run check admin");
-
   var admins = JSON.parse(localStorage.getItem("admins"));
   for (var i = 0; i < admins.length; i++) if (name == admins[i]) return 1;
   return 0;
