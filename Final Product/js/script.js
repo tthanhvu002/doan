@@ -67,12 +67,12 @@ function showDetail(id) {
         '</p> <ul class="BillDetail">';
       for (var j = 0; j < save_order[i].order.length; j++) {
         temp +=
-          '<li style="display: inline-block; margin-right: 10px;margin-left: 5px; margin-bottom: 10px;border-radius: 10px;border: 2px solid black; padding: 5px;"> <p style="margin-top: 3px;margin-bottom: -5px">' +
+          '<li style="display: inline-block; margin-right: 10px;margin-left: 5px; margin-bottom: 10px;border-radius: 10px;border: 2px solid black; padding: 10px 20px;  "> <p style="margin-top: 3px;margin-bottom: -5px">' +
           getProductName(save_order[i].order[j][0]) +
           "</p>" +
-          '<p style="margin-top: 3px;margin-bottom: -10px"> Size:' +
+          '<p style="margin-top: 15px;margin-bottom: -10px"> Size:' +
           save_order[i].order[j][1] +
-          '</p> <p style="margin-top: 3px;margin-bottom: 10px"> Quantity: ' +
+          '</p> <p style="margin-top: 15px;margin-bottom: 10px"> Quantity: ' +
           save_order[i].order[j][2] +
           "</p></li>";
       }
@@ -93,7 +93,7 @@ function showBill() {
     var result = "";
     for (var i = save_order.length - 1; i >= 0; i--) {
       result +=
-        '<li style="display: inline-block; margin-right: 5%;margin-bottom: 2%;border-radius: 10px;border: 5px solid #ff8c00;"><p>Order ID: ' +
+        '<li style="display: inline-block; margin-right: 5%;margin-bottom: 2%;border-radius: 10px;border: 5px solid linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); "><p>Order ID: ' +
         save_order[i].id +
         "</p>" +
         "<p>Date: " +

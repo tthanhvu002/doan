@@ -8,8 +8,10 @@ body
 {
     background: #fff;
     padding: 0;
+    position: relative;
     margin: 0;
     font-family: 'Alata', sans-serif;
+    background-color: whitesmoke;
 }
 
 .header2 
@@ -40,6 +42,15 @@ body
     text-align: center;
 }
 
+.grid{
+    position: absolute;
+    background: url(https://tairo.cssninja.io/img/illustrations/gridlines.svg);
+    top: 0%;
+    height: 100px;
+    left: 0;
+    right: 0;
+}
+
 .mainInner div
 {
     display:table-cell;
@@ -59,12 +70,13 @@ body
     margin-top: 57px;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
-    background: rgba(255, 165, 0, 0.8);
+    background:#183b56;
 }
 
 #sidebarMenu li
 {
     transition: 0.3s;
+    color: #fff;
 }
 
 #sidebarMenu li:hover
@@ -200,12 +212,22 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2
 /*bill*/
 #client_bill p
 {
-    margin-bottom: -14px;
+    margin-bottom: -5px;
 }
 
 #client_bill 
 {
+    padding-top: 50px;
+    background-color: #f1f5f9;
     margin-top: 20px;
+}
+
+#client_bill li{
+    border-radius: 0.75rem;
+    border: 1px solid rgb(226, 232, 240);
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 1px 0px 200px #cccccc8a;
 }
 
 .BillDetail
@@ -213,38 +235,35 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2
     margin-left: -8%;
 }
 
-#client_bill li
-{
-    border: 2px solid black;
-    border-radius: 10px;
-}
+
 /*bill detail*/
 .detail
 {
-    width: 80%;
+    width: 70%;
     border: none;
     cursor: pointer;
     display: inline-block;
-    background: #FF8C00;
-    color: black;
-    font-size: 20px;
+    background: #183b56;
+
+    color: whitesmoke;
+    font-size: 16px;
     padding: 8px 30px;
-    margin: 25px 17px;
+    margin: 35px 17px 25px;
     border-radius: 30px;
     transition: background 0.6s;
 }
 
+
+.BillDetail li p{
+    margin-top: 8px;
+}
 .detail:focus
 {
     text-decoration: none;
     outline: none;
 }
 
-.detail:hover
-{
-    background: black;
-    color: #FF8C00;
-}
+
 
 #order_detail
 {
@@ -329,17 +348,18 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2
 .title
 {
     text-align: center;
-    margin: 54px auto 10px;
+    margin: 10px auto 30px;
     position: relative;
     line-height: 60px;
     color: #555;
     font-size: 42px;
 }
 
+
 .title:after
 {
     content: '';
-    background: #FF8C00;
+    background: #183b56;
     width: 150px;
     height: 5px;
     border-radius: 5px;
