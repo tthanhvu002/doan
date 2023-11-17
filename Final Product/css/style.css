@@ -184,9 +184,10 @@ nav
 
 nav ul
 {
-	display: inline-block;
+	display: flex;
+	align-items: center;
 	list-style-type: none;
-	margin-top: -2%;
+	justify-content: flex-end;
 }
 
 nav ul li
@@ -218,6 +219,9 @@ a
 /* end header*/
 
 /* search */
+.option{
+	margin-bottom: 50px;
+}
 #search_type
 {
 	border-radius: 7px;
@@ -234,7 +238,7 @@ a
 {
 	border-radius: 7px;
 	border: 3px solid #FF8C00;
-	margin-top: 4.5%;
+	margin-top: 1.5%;
 }
 
 .searchForm

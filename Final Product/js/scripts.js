@@ -796,7 +796,7 @@ function getInfo() {
         alert("Account is blocked");
         flag = 1;
       } else {
-        window.location.href = "../html/home.html";
+        window.location.href = "../html/index.html";
         flag = 1;
         stored_accounts[i].state = 1;
 
@@ -895,7 +895,7 @@ function logout() {
   document.getElementById("log_out").innerHTML = " ";
   document.getElementById("admin").style.display = "none";
   document.getElementById("logOut").style.display = "none";
-  window.location.reload("home.html");
+  window.location.reload("index.html");
 }
 
 function float2int(value) {
@@ -1074,7 +1074,7 @@ function changeP(a, num, page_arr) {
     if (i != parseInt(a)) {
       document.getElementById(i.toString()).style.background = "#FF8C00";
     }
-  window.scrollBy(0, -700);
+  window.scrollBy(0, -1200);
 }
 
 function changePage(a) {
