@@ -219,6 +219,7 @@ function saleReport() {
   closeDetail();
 }
 
+//xoa san pham
 function deleteProduct(id) {
   if (confirm("Confirm to remove this product from store.")) {
     var product_info = JSON.parse(localStorage.getItem("product_info"));
@@ -275,6 +276,7 @@ function AddProduct() {
       quantity: 100,
     });
     localStorage.setItem("product_info", JSON.stringify(product_info));
+    alert("Add product successful");
   }
   closeDetail();
   document.getElementById("product_name").value = null;
@@ -535,7 +537,6 @@ function search2() {
       result = "";
     for (var j = 0; j < stored_accounts.length; j++) {
       if (stored_accounts[j].name.toLowerCase().indexOf(input) != -1) {
-        console.log("run12");
         temp +=
           '<div class="col-4" style="border: 3px solid #ff8c00"><h4 style="font-size: 20px; margin-top:2%">' +
           stored_accounts[j].name +
@@ -573,7 +574,6 @@ function search2() {
     if (flag == false) result = '<div class="row2">' + temp + "</div>";
     document.getElementById("search_result1").innerHTML = result;
   }
-  console.log("run12356");
 }
 
 function openManageAccForm() {
@@ -643,7 +643,6 @@ function searchById() {
   else {
     var flag = false;
     for (var j = 0; j < product_info.length; j++) {
-      // console.log(j);
       if (product_info[j].id.toLowerCase().indexOf(input) != -1) {
         temp +=
           '<div class="col-4"' +
@@ -693,7 +692,6 @@ function searchByName() {
   else {
     var flag = false;
     for (var j = 0; j < product_info.length; j++) {
-      console.log(j);
       if (product_info[j].name.toLowerCase().indexOf(input) != -1) {
         temp +=
           '<div class="col-4"' +
@@ -761,6 +759,8 @@ function getPostfix(string) {
   return string.substring(1);
 }
 
+
+//form edit product
 function editInfo(id) {
   document.getElementById("EditProductForm").style.height = "435px";
   document.getElementById("EditProductForm").innerHTML =
@@ -790,6 +790,8 @@ function checkExistPid(id) {
   return 0;
 }
 
+
+//edit product 
 function saveChanges(id) {
   var product_name = document.getElementById("product_name1").value;
   var price = document.getElementById("price1").value;
@@ -798,7 +800,7 @@ function saveChanges(id) {
   var type = getPrefix(document.getElementById("type1").value);
   var id2 = document.getElementById("id2").value;
   id2 = type + id2;
-
+  console.log(image);
   var product_info = JSON.parse(localStorage.getItem("product_info"));
   for (var i = 0; i < product_info.length; i++)
     if (id == product_info[i].id) {
@@ -808,13 +810,14 @@ function saveChanges(id) {
       if (image !== "") {
         image = "../image/" + image.substr(12, image.length - 12);
         product_info[i].img = image;
+      } else{
+        product_info[i].img = ''
       }
       if (
         type !== "" &&
         id2 != localStorage.getItem("current_product_id") &&
         checkExistPid(id2) == 0
       ) {
-        console.log("run change id");
         product_info[i].id = id2;
       }
       break;

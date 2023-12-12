@@ -4,6 +4,7 @@
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 
 html 
@@ -403,7 +404,7 @@ a
 .title
 {
 	text-align: center;
-	margin: 70px auto;
+	margin: 20px auto 70px;
 	position: relative;
 	line-height: 60px;
 	color: #fff;
@@ -619,13 +620,23 @@ a
 /* page num */
 .page-num li
 {
-	display: inline;
+	padding: 10px;
+	cursor: pointer;
 }
-
+.page-num li button{
+	width: 30px;
+	height: 25px;
+	cursor: pointer;
+}
 .page-num
 {
-	margin-left: 1%;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 0px;
+	margin-top: 2%;
 	margin-bottom: 2%;
+	margin-left: 5.5%;
 }
 
 .page-num li button
@@ -824,6 +835,7 @@ button:focus
 /* cart & order*/
 .cart, .order
 {
+	overflow: scroll;
 	top: -600%;
     z-index: 3;
 	position: fixed;
@@ -832,7 +844,29 @@ button:focus
     border-radius: 5px;
     border: 5px solid #FF8C00;
 }
+.order-address{
+	display: none;
+	transition: 0.2s ease-in;
+	opacity: 0;
+	position: absolute;
+	top: -100%;
+	z-index: 999;
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+	right: -30%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
 
+
+.order-address.active{
+	display: flex;
+	opacity: 1;
+	top: 1%;
+	right: 3%;
+}
 .closeCart
 {
     float: right;

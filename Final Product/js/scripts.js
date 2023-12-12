@@ -1,16 +1,4 @@
-var user_info = [
-  {
-    name: "KhangNguyen",
-    password: "123456789",
-    state: 0,
-    phoneNumber: "0969355151",
-    address: "Hochiminh",
-    email: "bubugigi2010@gmail.com",
-    isBlocked: 0,
-    resetPW: 0,
-  },
-];
-var admins = ["KhangNguyen"];
+var user_info = [];
 var num_of_cus = 1;
 var c = 0;
 var page = [];
@@ -902,6 +890,8 @@ function float2int(value) {
   return value | 0;
 }
 
+
+//search result
 function display(a) {
   var product_info = JSON.parse(localStorage.getItem("product_info"));
   if (a.length == 1) {
@@ -977,14 +967,11 @@ var type = "";
 function search() {
   var product_info = JSON.parse(localStorage.getItem("product_info"));
   var input = document.getElementById("input").value;
-  console.log("input: " + input);
   if (input === "") {
     document.getElementById("search_result").style.display = "none";
   } else {
     var sel = document.getElementById("search_type");
     price = sel.options[sel.selectedIndex].text;
-    if (price == "less than 1m") console.log("dung");
-    console.log("price: " + price);
     var sel1 = document.getElementById("product_type");
     type = sel1.options[sel1.selectedIndex].text;
     document.getElementById("search_result").style.display = "block";
@@ -1038,6 +1025,7 @@ function search() {
   }
 }
 
+//search type
 function changeSearchType() {
   var sel = document.getElementById("search_type");
   var text = sel.options[sel.selectedIndex].text;
@@ -1067,6 +1055,8 @@ function home() {
     document.getElementById(i.toString()).style.background = "#FF8C00";
 }
 
+
+//phan trang
 function changeP(a, num, page_arr) {
   document.getElementById("all_products").innerHTML = page_arr[parseInt(a) - 1];
   document.getElementById(a).style.background = "teal";
@@ -1074,7 +1064,7 @@ function changeP(a, num, page_arr) {
     if (i != parseInt(a)) {
       document.getElementById(i.toString()).style.background = "#FF8C00";
     }
-  window.scrollBy(0, -1200);
+  //window.scrollBy(0, -1200);
 }
 
 function changePage(a) {
@@ -1086,13 +1076,13 @@ function changeMousePage(a) {
 function changeKeyboardPage(a) {
   changeP(a, num_keyboard, keyboard_page);
 }
-
+//hien thi trang dau tien
 function showPorS(page_arr, string, num) {
   // console.log("num: ", num);
   document.getElementById("Endorser").style.display = "none";
   document.getElementById("propagation").style.display = "none";
   document.getElementById("bs&na").style.display = "none";
-  document.getElementById("page-num").style.display = "block";
+  document.getElementById("page-num").style.display = "flex";
   document.getElementById("home").style.height = "100px";
   document.getElementById("all_products").style.display = "block";
   document.getElementById("all_products").innerHTML = page_arr[0];
@@ -1117,6 +1107,8 @@ function getNum(arr) {
   else num = arr.length / 12;
   return num;
 }
+
+//chuyen trang
 
 function createPage(num, arr, page_arr, type) {
   var product_info = JSON.parse(localStorage.getItem("product_info"));
@@ -1255,6 +1247,7 @@ function addToCart(id) {
   var cartCount = parseInt(localStorage.getItem("cartCount")) + 1;
   localStorage.setItem("cartCount", cartCount);
   if (document.getElementById("userName") == null)
+    /* kiem tra xem co dang nhap chua */
     alert("Log in before buying our products !!!!");
   else {
     var userName = document.getElementById("userName").text;
@@ -1303,6 +1296,8 @@ function totalBill(userName) {
   }
   return total.toLocaleString("it-IT", { style: "currency", currency: "VND" });
 }
+
+
 
 function showCart() {
   if (document.getElementById("userName") == null)
@@ -1391,7 +1386,7 @@ function quantityup2(id) {
 function closeCart() {
   document.getElementById("cart").style.top = "-600%";
 }
-
+//xoa san pham trong gio hang
 function deleteThisProduct(id) {
   id = id.slice(0, -1);
   var userName = document.getElementById("userName").text;
@@ -1414,6 +1409,7 @@ if (localStorage["orderCount"] == null) {
   localStorage.setItem("orderCount", -1);
 }
 
+/* Luu order de render trong ham yourOrder */
 function saveOrder() {
   var userName = document.getElementById("userName").text;
   var client_order = [];
@@ -1465,8 +1461,9 @@ function saveOrder() {
     localStorage.setItem("save_order", JSON.stringify(save_order));
   }
   var save_order = JSON.parse(localStorage.getItem("save_order"));
-  // console.log(save_order, "haahah");
 }
+
+//kiem tra so luong san pham
 
 function checkQuantity(productId, quantity) {
   var stored_products = JSON.parse(localStorage.getItem("product_info"));
@@ -1480,13 +1477,68 @@ function checkQuantity(productId, quantity) {
   return false;
 }
 
+const orderAddressBtn = () => {
+  if (
+    document.querySelector("#houseNumber").value == "" ||
+    document.querySelector("#ward").value == "" ||
+    document.querySelector("#street").value == "" ||
+    document.querySelector("#district").value == "" ||
+    document.querySelector("#city").value == "") {
+    alert("Can phai nhap day du thong tin");
+    console.log(document.querySelector("#houseNumber").value);
+  } else {
+    var orderCount = parseInt(localStorage.getItem("orderCount")) + 1;
+    localStorage.setItem("orderCount", orderCount);
+    var today = new Date();
+    var order = [];
+    if (localStorage["order"] == null) {
+      localStorage.setItem("order", JSON.stringify(order));
+    }
+    var stored_order = JSON.parse(localStorage.getItem("order"));
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0");
+    var yyyy = today.getFullYear();
+    today = mm + "/" + dd + "/" + yyyy;
+    var userName = document.getElementById("userName").text;
+    var stored_cart = JSON.parse(localStorage.getItem("cart"));
+    for (var i = 0; i < stored_cart.length; i++) {
+      if (userName == stored_cart[i].name && stored_cart[i].state == 0) {
+        if (
+          //kiem tra so luong
+          checkQuantity(stored_cart[i].product, stored_cart[i].quantity) == true
+        ) {
+          stored_order.push({
+            date: today,
+            name: userName,
+            product: stored_cart[i].product,
+            size: stored_cart[i].size,
+            quantity: stored_cart[i].quantity,
+            id: orderCount,
+            state: 0, // tinh trang xu li cua don hang
+          });
+        } else {
+          alert(getProductName(stored_cart[i].product) + " is out of stock");
+        }
+      }
+    }
+    stored_cart = [];
+
+    localStorage.setItem("cart", JSON.stringify(stored_cart));
+    localStorage.setItem("order", JSON.stringify(stored_order));
+    showCart();
+    alert("Go to order section to see your order!!!");
+    saveOrder();
+    document.querySelector('.order-address').classList.remove('active')
+  }
+};
+
 function sendOrder() {
+  let userInfo = JSON.parse(localStorage.getItem("user_info"));
   var orderCount = parseInt(localStorage.getItem("orderCount")) + 1;
   localStorage.setItem("orderCount", orderCount);
   var today = new Date();
   var order = [];
   if (localStorage["order"] == null) {
-    // console.log("");
     localStorage.setItem("order", JSON.stringify(order));
   }
   var stored_order = JSON.parse(localStorage.getItem("order"));
@@ -1496,40 +1548,41 @@ function sendOrder() {
   today = mm + "/" + dd + "/" + yyyy;
   var userName = document.getElementById("userName").text;
   var stored_cart = JSON.parse(localStorage.getItem("cart"));
-  for (var i = 0; i < stored_cart.length; i++) {
-    if (userName == stored_cart[i].name && stored_cart[i].state == 0) {
-      if (
-        checkQuantity(stored_cart[i].product, stored_cart[i].quantity) == true
-      ) {
-        stored_order.push({
-          date: today,
-          name: userName,
-          product: stored_cart[i].product,
-          size: stored_cart[i].size,
-          quantity: stored_cart[i].quantity,
-          id: orderCount,
-          state: 0,
-        });
-        stored_cart[i].state = 1;
-      } else {
-        alert(getProductName(stored_cart[i].product) + " is out of stock");
+  let userConfirm = confirm(
+    "Chon confirm de nhap dia chi moi, cancel de lay dia chi mac dinh"
+  );
+  if (userConfirm) {
+    document.querySelector(".order-address").classList.add("active");
+    orderAddressBtn()
+  } else {
+    for (var i = 0; i < stored_cart.length; i++) {
+      if (userName == stored_cart[i].name && stored_cart[i].state == 0) {
+        if (
+          //kiem tra so luong
+          checkQuantity(stored_cart[i].product, stored_cart[i].quantity) == true
+        ) {
+          stored_order.push({
+            date: today,
+            name: userName,
+            product: stored_cart[i].product,
+            size: stored_cart[i].size,
+            quantity: stored_cart[i].quantity,
+            id: orderCount,
+            state: 0, // tinh trang xu li cua don hang
+          });
+        } else {
+          alert(getProductName(stored_cart[i].product) + " is out of stock");
+        }
       }
     }
-  }
+    stored_cart = [];
 
-  for (var i = 0; i < stored_cart.length; i++) {
-    if (stored_cart[i].state == 1) {
-      stored_cart.splice(i, 1);
-      i--;
-    }
+    localStorage.setItem("cart", JSON.stringify(stored_cart));
+    localStorage.setItem("order", JSON.stringify(stored_order));
+    showCart();
+    alert("Go to order section to see your order!!!");
+    saveOrder();
   }
-
-  localStorage.setItem("cart", JSON.stringify(stored_cart));
-  localStorage.setItem("order", JSON.stringify(stored_order));
-  showCart();
-  alert("Go to order section to see your order!!!");
-  // console.log('order: ',  JSON.parse(localStorage.getItem('order')));
-  saveOrder();
 }
 
 function checkIdClient(id, id_array) {
@@ -1587,7 +1640,6 @@ function yourOrder() {
         flag = true;
       }
     }
-    // console.log('sort_client_order', save_order);
     document.getElementById("MyOrder").innerHTML = temp;
   }
 }

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="..\css\style.css">
-	<title>2H3K</title>
+	<title>Web</title>
 	<link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 </head>
@@ -151,11 +151,11 @@
 		<div class="row2" id="newArrival">
 		</div>
 	</div>
-
+	
+		<ul class = "page-num" style = "display: none;" id = "page-num">
+		</ul>
 	<div class = "small-container" id = "all_products">
 	</div>
-	<ul class = "page-num" style = "display: none;" id = "page-num">
-	</ul>
 	<div class="banner-container">
 		<div class="banner">
 			<div class="keyboard">
@@ -230,7 +230,26 @@
 				</div>
 			</div>		
 	</div>
-
+	
+	<form class="order-address">
+		<label for="houseNumber">Số Nhà:</label>
+		<input   type="text" id="houseNumber" name="houseNumber" required>
+	
+		<label for="street">Đường:</label>
+		<input type="text" id="street" name="street" required>
+	
+		<label for="ward">Phường:</label>
+		<input type="text" id="ward" name="ward" required>
+	
+		<label for="district">Quận:</label>
+		<input type="text" id="district" name="district" required>
+	
+		<label for="city">Thành Phố:</label>
+		<input type="text" id="city" name="city" required>
+	
+		<div  onclick="orderAddressBtn()">Gửi</div>
+	  </form>
+	
 	<button onclick="topFunction()" id="BtnTop" title="Go to top">Top</button>
 
 	<div class="footer">
