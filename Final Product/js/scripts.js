@@ -808,9 +808,7 @@ function getInfo() {
   }
 }
 
-function forgotPW() {
-  alert("Check your mail to get backup code");
-}
+
 
 function getInfo1() {
   var stored_accounts = JSON.parse(localStorage.getItem("user_info"));

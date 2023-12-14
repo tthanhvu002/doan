@@ -29,7 +29,7 @@ body
 .btn
 {
 	display: inline-block;
-	background: #FF8C00;
+	background: #183b56;
 	color: black;
 	font-size: 20px;
 	padding: 8px 30px;
@@ -226,7 +226,7 @@ a
 #search_type
 {
 	border-radius: 7px;
-	border: 3px solid #FF8C00;
+	border: 3px solid #183b56;
 	margin-bottom: -4%;
 }
 
@@ -238,7 +238,7 @@ a
 #product_type
 {
 	border-radius: 7px;
-	border: 3px solid #FF8C00;
+	border: 3px solid #183b56;
 	margin-top: 1.5%;
 }
 
@@ -286,7 +286,7 @@ a
 	margin-bottom: -5px;
 	padding-left: 10px;
 	border-radius: 7px;
-	border: 3px solid #FF8C00;
+	border: 3px solid #183b56;
 }
 
 .searchForm input:focus
@@ -297,7 +297,7 @@ a
 .searchForm .closebtn 
 {
 	position: absolute;
-	color: #FF8C00;
+	color: #183b56;
 	top: -9px;
 	right: 2px;
 	font-size: 60px;
@@ -306,7 +306,7 @@ a
 .cart .closebtn
 {
 	position: absolute;
-	color: #FF8C00;
+	color: #183b56;
 	top: -9px;
 	right: 2px;
 	font-size: 60px;
@@ -350,7 +350,7 @@ a
 	{
 		display: block;
 	    width: 106px;
-	    background: #ff8c00;
+	    background: #183b56;
 	    text-align: center;
 	    border: 3px solid black;
 	    border-radius: 5px;
@@ -414,7 +414,7 @@ a
 .title::after
 {
 	content: '';
-	background: #FF8C00;
+	background: #183b56;
 	width: 150px;
 	height: 3px;
 	border-radius: 5px;
@@ -574,7 +574,7 @@ a
 	z-index: 0;
 	font-size: 14px;
 	outline: none;
-	background-color: #FF8C00;
+	background-color: #183b56;
 	color: white;
 	padding: 5px;
 	border: 5px solid #CF5300;
@@ -585,8 +585,8 @@ a
 #BtnTop:hover 
 {
 	background-color: #555;
-	color: #FF8C00;
-	border: 5px solid #FF8C00;
+	color: #183b56;
+	border: 5px solid #183b56;
 	transition: 0.6s;
 }
 /*end top button*/
@@ -600,7 +600,7 @@ a
 	z-index: 99;
 	font-size: 14px;
 	outline: none;
-	background-color: #FF8C00;
+	background-color: #183b56;
 	color: white;
 	padding: 5px;
 	border: 5px solid #CF5300;
@@ -611,8 +611,8 @@ a
 #BtnShowMore:hover
 {
 	background-color: #555;
-	color: #FF8C00;
-	border: 5px solid #FF8C00;
+	color: #183b56;
+	border: 5px solid #183b56;
 	transition: 0.6s;
 }*/
 /*end show more btn*/
@@ -644,8 +644,9 @@ a
 	width: 25px;
 	border-radius: 3px;
 	outline: none;
-	background: #FF8C00;
+	background: #183b56;
 	border: 2px solid black;
+	color: #fff;
 	transition: 0.2s;
 	font-weight: bold;
 }
@@ -675,7 +676,7 @@ a
 
 .DetailBtn:hover
 {
-	background: #FF8C00;
+	background: #183b56;
 	color: #fff;
 	cursor: pointer;
 }
@@ -698,7 +699,7 @@ a
     background: #ffF;
     transition: 0.7s;
     border-radius: 5px;
-    border: 5px solid #FF8C00;
+    border: 5px solid #183b56;
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 1);
 }
 
@@ -788,11 +789,18 @@ a
     border: 2px;
     margin-top: 6%;
     transition: 0.5s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .addToCart a
 {
-	color: #ff8c00;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	line-height: 1;
     font-weight: bold;
     text-align: center;
     transition: 0.5s;
@@ -801,12 +809,11 @@ a
 
 .addToCart a:hover
 {
-	color: black;
 }
 
 .addToCart:hover
 {
-	background: #FF8C00;
+	background: #183b56;
 	color: black;
 }
 
@@ -842,7 +849,7 @@ button:focus
 	background: white;
     transition: 1.1s;
     border-radius: 5px;
-    border: 5px solid #FF8C00;
+    border: 5px solid #183b56;
 }
 .order-address{
 	display: none;
@@ -873,7 +880,7 @@ button:focus
     font-weight: bold;
     text-decoration: none;
     font-size: 50px;
-    color: #ff8c00;
+    color: #183b56;
     margin-left: 1%;
     margin-top: -44px;
 }
@@ -883,7 +890,7 @@ h2
 	font-size: 30px;
     margin-left: 1%;
     margin-top: -1%;
-    color: #ff8c00;
+    color: #183b56;
 }
 
 .quan

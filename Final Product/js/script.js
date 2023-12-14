@@ -372,7 +372,6 @@ function drawChart(flag = true) {
   if (localStorage["save_order"] != null) {
     document.getElementById("monthOfChart").style.marginTop = "-25px";
     var bestSeller = getTop10(flag);
-    console.log(bestSeller);
     if (bestSeller.length == 0) {
       document.getElementById("myChart").style.display = "none";
       document.getElementById("monthOfChart").style.marginTop = "25px";
@@ -445,7 +444,6 @@ function drawChart(flag = true) {
 
 function reDrawChart() {
   drawChart(false);
-  console.log("runnnnnn");
 }
 
 function openDelForm() {
@@ -759,7 +757,6 @@ function getPostfix(string) {
   return string.substring(1);
 }
 
-
 //form edit product
 function editInfo(id) {
   document.getElementById("EditProductForm").style.height = "435px";
@@ -790,8 +787,7 @@ function checkExistPid(id) {
   return 0;
 }
 
-
-//edit product 
+//edit product
 function saveChanges(id) {
   var product_name = document.getElementById("product_name1").value;
   var price = document.getElementById("price1").value;
@@ -810,8 +806,8 @@ function saveChanges(id) {
       if (image !== "") {
         image = "../image/" + image.substr(12, image.length - 12);
         product_info[i].img = image;
-      } else{
-        product_info[i].img = ''
+      } else {
+        product_info[i].img = "";
       }
       if (
         type !== "" &&
@@ -1034,11 +1030,24 @@ function getInfo2() {
   }
 }
 
+function logOut() {
+  localStorage.setItem("adminState", false)
+  loadPage()
+}
+
 function loadPage() {
-  showBill();
-  var admin = localStorage.getItem("current_admin");
-  document.getElementById("admin").innerHTML =
-    admin + "<span>Co-founder and owner</span>";
+  let flag = JSON.parse(localStorage.getItem("adminState"));
+  if (flag == false) {
+   // document.querySelector('body').style.display = 'none'
+    document.querySelector('body').innerHTML = ``
+
+    document.querySelector('body').innerHTML = ` <h1> <a href="../html/adminPageLogin.html">You need to sign in first </a> </h1> `
+  } else {
+    showBill();
+    var admin = localStorage.getItem("current_admin");
+    document.getElementById("admin").innerHTML =
+      admin + "<span>Co-founder and owner</span>";
+  }
 }
 
 function checkAdmin(name) {
