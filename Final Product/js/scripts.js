@@ -1546,7 +1546,7 @@ function sendOrder() {
   var userName = document.getElementById("userName").text;
   var stored_cart = JSON.parse(localStorage.getItem("cart"));
   let userConfirm = confirm(
-    "Chon confirm de nhap dia chi moi, cancel de lay dia chi mac dinh"
+    "Chon Ok de nhap dia chi moi, chon Huy de lay dia chi mac dinh"
   );
   if (userConfirm) {
     document.querySelector(".order-address").classList.add("active");
