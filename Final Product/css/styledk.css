@@ -117,7 +117,7 @@ body {
 
 
 
-#register button {
+#register .btn {
     background: black;
     color: white;
     padding: 1rem;
@@ -125,9 +125,10 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: background .5s;
+    text-align: center;
 }
 
-#register button:hover {
+#register .btn:hover {
     background-color: rgba(0, 0, 0, .85);
     cursor: pointer;    
 }

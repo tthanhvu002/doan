@@ -771,10 +771,7 @@ function getInfo() {
   var user_name = document.getElementById("user_name").value;
   var password = document.getElementById("password").value;
   var flag = 0;
-  if (user_name == "admin" && password == "admin") {
-    window.location.href = "../html/adminPage.html";
-    flag = 1;
-  }
+  
   for (var i = 0; i < stored_accounts.length; i++) {
     if (
       user_name == stored_accounts[i].name &&
@@ -784,6 +781,7 @@ function getInfo() {
         alert("Account is blocked");
         flag = 1;
       } else {
+        console.log(user_name);
         window.location.href = "../html/index.html";
         flag = 1;
         stored_accounts[i].state = 1;
@@ -792,14 +790,14 @@ function getInfo() {
         document.getElementById("acc").innerHTML =
           '<a id="userName">' + user_name + "</a>";
 
-        if (checkAdmin(user_name)) {
+       /*  if (checkAdmin(user_name)) {
           document.getElementById("admin").style.display = "inline-block";
           document.getElementById("logOut").style.display = "inline-block";
           document.getElementById("log_out").innerHTML =
             '<i class="fas fa-sign-out-alt"></i>';
           document.getElementById("user_name").value = null;
           document.getElementById("password").value = null;
-        }
+        } */
       }
     }
   }
@@ -835,7 +833,7 @@ function getInfo1() {
     ) {
       alert("You haven't entered enough information here!!!");
     } else {
-      window.location.href = "login.html";
+      window.location.href = "../html/login.html";
       stored_accounts.push({
         name: userName,
         password: password1.toString(),
@@ -863,6 +861,7 @@ function getInfo1() {
       document.getElementById("email").value = null;
       document.getElementById("phoneNumber").value = null;
       document.getElementById("address").value = null;
+      
     }
   }
 }
