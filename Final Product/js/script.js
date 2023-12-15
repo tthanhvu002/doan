@@ -1,3 +1,24 @@
+var user_info = [
+  {
+    name: "KhangNguyen",
+    password: "123456789",
+    state: 0,
+    phoneNumber: "0969355151",
+    address: "Hochiminh",
+    email: "bubugigi2010@gmail.com",
+    isBlocked: 0,
+    resetPW: 0,
+  },
+];
+var admins = ["KhangNguyen"];
+var num_of_cus = 1;
+var c = 0;
+var page = [];
+var mouse_page = [];
+var keyboard_page = [];
+var num_keyboard;
+var num_mouse;
+var num;
 function getProductName(id) {
   var stored_products = JSON.parse(localStorage.getItem("product_info"));
   for (var i = 0; i < stored_products.length; i++)
@@ -98,7 +119,8 @@ function showBill() {
         "</p>" +
         "<p>Date: " +
         save_order[i].date +
-        "</p>" + "<p>Address: " +
+        "</p>" +
+        "<p>Address: " +
         save_order[i].address +
         "</p>" +
         "<p> Name:" +
@@ -1033,17 +1055,19 @@ function getInfo2() {
 }
 
 function logOut() {
-  localStorage.setItem("adminState", false)
-  loadPage()
+  localStorage.setItem("adminState", false);
+  loadPage();
 }
 
 function loadPage() {
   let flag = JSON.parse(localStorage.getItem("adminState"));
   if (flag == false) {
-   // document.querySelector('body').style.display = 'none'
-    document.querySelector('body').innerHTML = ``
+    // document.querySelector('body').style.display = 'none'
+    document.querySelector("body").innerHTML = ``;
 
-    document.querySelector('body').innerHTML = ` <h1> <a href="../html/adminPageLogin.html">You need to sign in first </a> </h1> `
+    document.querySelector(
+      "body"
+    ).innerHTML = ` <h1> <a href="../html/adminPageLogin.html">You need to sign in first </a> </h1> `;
   } else {
     showBill();
     var admin = localStorage.getItem("current_admin");

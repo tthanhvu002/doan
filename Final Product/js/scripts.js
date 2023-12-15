@@ -7,7 +7,27 @@ var keyboard_page = [];
 var num_keyboard;
 var num_mouse;
 var num;
-
+var user_info = [
+  {
+    name: "KhangNguyen",
+    password: "123456789",
+    state: 0,
+    phoneNumber: "0969355151",
+    address: "Hochiminh",
+    email: "bubugigi2010@gmail.com",
+    isBlocked: 0,
+    resetPW: 0,
+  },
+];
+var admins = ["KhangNguyen"];
+var num_of_cus = 1;
+var c = 0;
+var page = [];
+var mouse_page = [];
+var keyboard_page = [];
+var num_keyboard;
+var num_mouse;
+var num;
 var mybutton = document.getElementById("BtnTop");
 window.onscroll = function () {
   scrollFunction();
@@ -1495,7 +1515,7 @@ const orderAddressBtn = () => {
     var ward = document.querySelector("#street").value;
     var district = document.querySelector("#district").value;
     var city = document.querySelector("#city").value;
-    var address = `${houseNumber}, ${street}, ${ward}, ${district}, ${city}`;
+    var address = `${houseNumber} ${street} ${ward} ${district} ${city}`;
     var stored_cart;
     var orderCount = parseInt(localStorage.getItem("orderCount")) + 1;
     localStorage.setItem("orderCount", orderCount);
