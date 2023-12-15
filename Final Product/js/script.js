@@ -98,6 +98,8 @@ function showBill() {
         "</p>" +
         "<p>Date: " +
         save_order[i].date +
+        "</p>" + "<p>Address: " +
+        save_order[i].address +
         "</p>" +
         "<p> Name:" +
         save_order[i].name +

@@ -1248,7 +1248,6 @@ function addToCart(id) {
     var userName = document.getElementById("userName").text;
     if (isBlocked(userName) == 1) alert("Your account is blocked!");
     else {
-     
       var sel = document.getElementById("Color");
       var sizE = sel.options[sel.selectedIndex].value;
       var quan = document.getElementById("quantity").value;
@@ -1381,9 +1380,9 @@ function quantityup2(id) {
 }
 
 function closeCart() {
-cartCount1 = JSON.parse(localStorage.getItem("cart")).length;
-console.log(cartCount1);
-document.querySelector(".cart-btn .after").innerHTML = cartCount1;
+  cartCount1 = JSON.parse(localStorage.getItem("cart")).length;
+  console.log(cartCount1);
+  document.querySelector(".cart-btn .after").innerHTML = cartCount1;
   document.getElementById("cart").style.top = "-600%";
 }
 //xoa san pham trong gio hang
@@ -1421,6 +1420,7 @@ function saveOrder() {
       if (checkIdClient(stored_order[i].id, id_client_order) == false)
         id_client_order.push({
           id: stored_order[i].id,
+          address: stored_order[i].address,
           date: stored_order[i].date,
           state: stored_order[i].state,
         });
@@ -1432,6 +1432,8 @@ function saveOrder() {
     sort_client_order.push({
       id: id_client_order[i].id,
       order: [],
+      address: id_client_order[i].address,
+
       name: userName,
       date: id_client_order[i].date,
       state: id_client_order[i].state,
@@ -1488,6 +1490,13 @@ const orderAddressBtn = () => {
     alert("Can phai nhap day du thong tin");
     console.log(document.querySelector("#houseNumber").value);
   } else {
+    var houseNumber = document.querySelector("#houseNumber").value;
+    var street = document.querySelector("#ward").value;
+    var ward = document.querySelector("#street").value;
+    var district = document.querySelector("#district").value;
+    var city = document.querySelector("#city").value;
+    var address = `${houseNumber}, ${street}, ${ward}, ${district}, ${city}`;
+    var stored_cart;
     var orderCount = parseInt(localStorage.getItem("orderCount")) + 1;
     localStorage.setItem("orderCount", orderCount);
     var today = new Date();
@@ -1515,6 +1524,7 @@ const orderAddressBtn = () => {
             size: stored_cart[i].size,
             quantity: stored_cart[i].quantity,
             id: orderCount,
+            address: address,
             state: 0, // tinh trang xu li cua don hang
           });
         } else {
@@ -1556,6 +1566,12 @@ function sendOrder() {
     document.querySelector(".order-address").classList.add("active");
     orderAddressBtn();
   } else {
+    let address = ''
+    for (let i = 0; i < userInfo.length; i++) {
+      if (document.querySelector("#userName").innerHTML == userInfo[i].name) {
+        address = userInfo[i].address;
+      }
+    }
     for (var i = 0; i < stored_cart.length; i++) {
       if (userName == stored_cart[i].name && stored_cart[i].state == 0) {
         if (
@@ -1568,6 +1584,7 @@ function sendOrder() {
             product: stored_cart[i].product,
             size: stored_cart[i].size,
             quantity: stored_cart[i].quantity,
+            address: address,
             id: orderCount,
             state: 0, // tinh trang xu li cua don hang
           });
@@ -1576,6 +1593,7 @@ function sendOrder() {
         }
       }
     }
+    console.log(stored_order);
     stored_cart = [];
 
     localStorage.setItem("cart", JSON.stringify(stored_cart));
