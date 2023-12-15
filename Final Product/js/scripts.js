@@ -771,7 +771,7 @@ function getInfo() {
   var user_name = document.getElementById("user_name").value;
   var password = document.getElementById("password").value;
   var flag = 0;
-  
+
   for (var i = 0; i < stored_accounts.length; i++) {
     if (
       user_name == stored_accounts[i].name &&
@@ -790,7 +790,7 @@ function getInfo() {
         document.getElementById("acc").innerHTML =
           '<a id="userName">' + user_name + "</a>";
 
-       /*  if (checkAdmin(user_name)) {
+        /*  if (checkAdmin(user_name)) {
           document.getElementById("admin").style.display = "inline-block";
           document.getElementById("logOut").style.display = "inline-block";
           document.getElementById("log_out").innerHTML =
@@ -805,8 +805,6 @@ function getInfo() {
     alert("Wrong username or password");
   }
 }
-
-
 
 function getInfo1() {
   var stored_accounts = JSON.parse(localStorage.getItem("user_info"));
@@ -861,7 +859,6 @@ function getInfo1() {
       document.getElementById("email").value = null;
       document.getElementById("phoneNumber").value = null;
       document.getElementById("address").value = null;
-      
     }
   }
 }
@@ -886,7 +883,6 @@ function logout() {
 function float2int(value) {
   return value | 0;
 }
-
 
 //search result
 function display(a) {
@@ -1051,7 +1047,6 @@ function home() {
   for (var i = 1; i <= 7; i++)
     document.getElementById(i.toString()).style.background = "#FF8C00";
 }
-
 
 //phan trang
 function changeP(a, num, page_arr) {
@@ -1239,10 +1234,13 @@ function isBlocked(name) {
       if (user_info[i].isBlocked == 1) return 1;
       else return 0;
 }
-
+let cartCount1 = JSON.parse(localStorage.getItem("cart")).length;
+console.log(cartCount1);
+document.querySelector(".cart-btn .after").innerHTML = cartCount1;
 function addToCart(id) {
   var cartCount = parseInt(localStorage.getItem("cartCount")) + 1;
   localStorage.setItem("cartCount", cartCount);
+  console.log("hello from add to cart function");
   if (document.getElementById("userName") == null)
     /* kiem tra xem co dang nhap chua */
     alert("Log in before buying our products !!!!");
@@ -1250,6 +1248,7 @@ function addToCart(id) {
     var userName = document.getElementById("userName").text;
     if (isBlocked(userName) == 1) alert("Your account is blocked!");
     else {
+     
       var sel = document.getElementById("Color");
       var sizE = sel.options[sel.selectedIndex].value;
       var quan = document.getElementById("quantity").value;
@@ -1266,6 +1265,9 @@ function addToCart(id) {
       });
       localStorage.setItem("cart", JSON.stringify(stored_cart));
       document.getElementById("quantity").value = 1;
+      cartCount1 = JSON.parse(localStorage.getItem("cart")).length;
+      console.log(cartCount1);
+      document.querySelector(".cart-btn .after").innerHTML = cartCount1;
       closeDetail();
     }
   }
@@ -1293,8 +1295,6 @@ function totalBill(userName) {
   }
   return total.toLocaleString("it-IT", { style: "currency", currency: "VND" });
 }
-
-
 
 function showCart() {
   if (document.getElementById("userName") == null)
@@ -1381,6 +1381,9 @@ function quantityup2(id) {
 }
 
 function closeCart() {
+cartCount1 = JSON.parse(localStorage.getItem("cart")).length;
+console.log(cartCount1);
+document.querySelector(".cart-btn .after").innerHTML = cartCount1;
   document.getElementById("cart").style.top = "-600%";
 }
 //xoa san pham trong gio hang
@@ -1480,7 +1483,8 @@ const orderAddressBtn = () => {
     document.querySelector("#ward").value == "" ||
     document.querySelector("#street").value == "" ||
     document.querySelector("#district").value == "" ||
-    document.querySelector("#city").value == "") {
+    document.querySelector("#city").value == ""
+  ) {
     alert("Can phai nhap day du thong tin");
     console.log(document.querySelector("#houseNumber").value);
   } else {
@@ -1525,7 +1529,7 @@ const orderAddressBtn = () => {
     showCart();
     alert("Go to order section to see your order!!!");
     saveOrder();
-    document.querySelector('.order-address').classList.remove('active')
+    document.querySelector(".order-address").classList.remove("active");
   }
 };
 
@@ -1550,7 +1554,7 @@ function sendOrder() {
   );
   if (userConfirm) {
     document.querySelector(".order-address").classList.add("active");
-    orderAddressBtn()
+    orderAddressBtn();
   } else {
     for (var i = 0; i < stored_cart.length; i++) {
       if (userName == stored_cart[i].name && stored_cart[i].state == 0) {
